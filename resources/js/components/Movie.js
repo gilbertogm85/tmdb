@@ -22,7 +22,7 @@ export default class Movie extends Component {
 		let movie = this.state.movies;
 		let poster = 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
 			overview = movie.overview,
-			generos = "Not available",
+			generos = "",
 			background = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path;
 
 		if(movie.poster_path== null){
@@ -35,13 +35,15 @@ export default class Movie extends Component {
 			document.body.style.backgroundImage = 'url(' + background + ')';
 		}
 		if (movie.genres) {
-			generos = "";
 			let genres = movie.genres;
 			for(var i=0; i < genres.length; i++) {
     			generos += genres[i].name;
     			if(i < genres.length-1) {
     				generos += ', ';
     			}
+			}
+			if(genres.length == 0) {
+				generos = "Not available";
 			}
 		}
 		return (
