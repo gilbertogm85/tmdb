@@ -66,14 +66,13 @@ export default class Main extends Component {
 
 	renderMovies() {
 		return this.state.movies.map(movie => {
-			let posterIMG = 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
-			overview = movie.overview,
-			generos = '';
+			let poster = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
+
 			if(movie.poster_path== null){
-				posterIMG = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g';
+				poster = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSols5HZxlQWyS9JY5d3_L9imbk0LiziHiyDtMZLHt_UNzoYUXs2g';
 			}
-			if(!movie.overview) {
-				overview = "Description not available";
+			if(!movie.genres) {
+				movie.genres = "Not available";
 			}
 
 			return (
@@ -82,7 +81,7 @@ export default class Main extends Component {
 					<div className="container">
 						<div className="row">
 							<div className="col-sm-3">
-								<img className='poster' src={posterIMG} width="100%"/>
+								<img className='poster' src={poster} width="100%"/>
 							</div>
 							<div className="col-sm-9 cardtest">
 								<h1>{movie.original_title}</h1>
@@ -103,11 +102,11 @@ export default class Main extends Component {
 		return (
 			<div>
 				<SearchBox/>
-				<Pagination/>
 				<div className="tagline">
 					<h1>Upcoming Movies</h1>
 				</div>
 				{ this.renderMovies() }
+				<Pagination/>
 			</div> 
 
 			);
