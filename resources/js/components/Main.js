@@ -40,7 +40,7 @@ export default class Main extends Component {
 			},
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
 			remote: {
-				url: '/api/movie/search/%QUERY%',
+				url: '/api/movie/search/%QUERY',
 				filter: function(movies) {
 					return $.map(movies.results, function(movie) {
 						return {

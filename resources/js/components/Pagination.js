@@ -7,27 +7,25 @@ export default class Pagination extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { total: undefined } ;
-
+		this.state = { total: undefined, pagination: undefined} ;
 	}
 
-	createPagination() {
+	componentDidMount() {
 		axios.get(`/api/movie/pagination`)
-		.then(res => {
-			const total = res.data;
-			this.setState({total});
-		})
-		let pages = this.state;
-		let pagination = '';
-		for (let i = 1; i <= pages.total; i++) {
-			pagination += '<a href=/' + i + ' key='+i+'>' + i + '</a> ';
-		}
-		return pagination;
+		.then(res => { return res.data })
+			.then(pagination => {
+				this.setState({ pagination });
+			})
+			.catch(error => console.log(error));
 	}
 
 	render() {
+		let pages = '';
+		for (let i = 1; i <= this.state.pagination; i++) {
+				pages += '<a href=/' + i + ' key='+i+'>' + i + '</a> ';
+			}
 		return (
-			<div className='tagline text-center' dangerouslySetInnerHTML={{__html: this.createPagination()}}>
+			<div className='tagline text-center' dangerouslySetInnerHTML={{__html: pages}}>
 			</div> 
 			)
 	}

@@ -65768,7 +65768,6 @@ function (_Component) {
         component: _Main__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/movie/:id",
-        exact: true,
         component: _Movie__WEBPACK_IMPORTED_MODULE_4__["default"]
       })));
     }
@@ -65963,7 +65962,7 @@ function (_Component) {
         },
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
-          url: '/api/movie/search/%QUERY%',
+          url: '/api/movie/search/%QUERY',
           filter: function filter(movies) {
             return $.map(movies.results, function (movie) {
               return {
@@ -66230,39 +66229,40 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Pagination).call(this, props));
     _this.state = {
-      total: undefined
+      total: undefined,
+      pagination: undefined
     };
     return _this;
   }
 
   _createClass(Pagination, [{
-    key: "createPagination",
-    value: function createPagination() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/movie/pagination").then(function (res) {
-        var total = res.data;
-
+        return res.data;
+      }).then(function (pagination) {
         _this2.setState({
-          total: total
+          pagination: pagination
         });
+      })["catch"](function (error) {
+        return console.log(error);
       });
-      var pages = this.state;
-      var pagination = '';
-
-      for (var i = 1; i <= pages.total; i++) {
-        pagination += '<a href=/' + i + ' key=' + i + '>' + i + '</a> ';
-      }
-
-      return pagination;
     }
   }, {
     key: "render",
     value: function render() {
+      var pages = '';
+
+      for (var i = 1; i <= this.state.pagination; i++) {
+        pages += '<a href=/' + i + ' key=' + i + '>' + i + '</a> ';
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tagline text-center",
         dangerouslySetInnerHTML: {
-          __html: this.createPagination()
+          __html: pages
         }
       });
     }
@@ -68372,8 +68372,8 @@ function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/gilbertomachado/Sites/movies/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/gilbertomachado/Sites/movies/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/rz-lt070/bitbucket/tmdb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/rz-lt070/bitbucket/tmdb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
