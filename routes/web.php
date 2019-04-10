@@ -12,4 +12,4 @@
 */
 
 
-Route::view('/{path?}', 'welcome');
+Route::view('{any?}', 'welcome')->where('any', '.*');

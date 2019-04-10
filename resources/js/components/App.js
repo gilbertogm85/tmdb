@@ -10,7 +10,7 @@ export default class RoutePath extends Component{
             <BrowserRouter>
                     <Switch>
                         <Route path="/:page?" exact component={Main}/>
-                        <Route path='/movie/:id' exact component={Movie}/>
+                        <Route path='/movie/:id' component={Movie}/>
                     </Switch>
             </BrowserRouter>
         )

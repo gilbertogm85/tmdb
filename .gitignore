@@ -1,4 +1,5 @@
 /node_modules
+/public/js/*
 /public/hot
 /public/storage
 /storage/*.key
@@ -9,3 +10,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
